@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Book-Film_Database", "Book-Film_Database\Book-Film_Database.csproj", "{92417A90-5DCE-40C4-A5C5-F099640358AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92417A90-5DCE-40C4-A5C5-F099640358AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92417A90-5DCE-40C4-A5C5-F099640358AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92417A90-5DCE-40C4-A5C5-F099640358AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92417A90-5DCE-40C4-A5C5-F099640358AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
