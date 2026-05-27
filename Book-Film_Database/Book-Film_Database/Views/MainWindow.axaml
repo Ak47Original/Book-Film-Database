@@ -5,16 +5,16 @@
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="Book_Film_Database.MainWindow"
         Title="Book_Film_Database"
-        Background="MidnightBlue"
+        Background="#040012"
         RequestedThemeVariant="Dark">
-
+        
         <Grid>
-                <UniformGrid Rows="1" Columns="5" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" MaxWidth="1920" Background="DarkSlateBlue">        
-                        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button> 
-                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-                        <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-                        <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                <UniformGrid Rows="1" Columns="5" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Width="1920"  Background="#0a0026">        
+                        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button> 
+                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
                 </UniformGrid>
                 <StackPanel Orientation="Vertical" Spacing="0" HorizontalAlignment="Center" VerticalAlignment="Top" Background="MidnightBlue">
                 </StackPanel>
