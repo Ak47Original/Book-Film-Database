@@ -2,8 +2,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
         x:Class="Book_Film_Database.MainWindow"
-        Title="Book_Film_Database">
-    Welcome to Avalonia!
+        Title="Book_Film_Database"
+        Background="MidnightBlue"
+        RequestedThemeVariant="Dark">
+
+        <Grid>
+                <UniformGrid Rows="1" Columns="5" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" MaxWidth="1920" Background="DarkSlateBlue">        
+                        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button> 
+                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                        <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                        <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                </UniformGrid>
+                <StackPanel Orientation="Vertical" Spacing="0" HorizontalAlignment="Center" VerticalAlignment="Top" Background="MidnightBlue">
+                </StackPanel>
+        </Grid>        
+        
+        <!-- 
+        <Grid RowDefinitions="*" ColumnDefinitions="*, *, *, *" VerticalAlignment="Top" HorizontalAlignment="Center" ShowGridLines="False" Height="50" Width="1920"> 
+        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button> 
+                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                        <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+                        <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
+        </Grid>
+        -->
 </Window>
