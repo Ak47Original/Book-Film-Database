@@ -21,12 +21,17 @@
         </Grid>        
         
         <!-- 
-        <Grid RowDefinitions="*" ColumnDefinitions="*, *, *, *" VerticalAlignment="Top" HorizontalAlignment="Center" ShowGridLines="False" Height="50" Width="1920"> 
-        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button> 
-                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-                        <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-                        <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" Background="DarkSlateBlue"></Button>
-        </Grid>
+        <Grid>
+                <Grid RowDefinitions="*" ColumnDefinitions="*, *, *, *" VerticalAlignment="Top" HorizontalAlignment="Center" ShowGridLines="False" Height="50" Width="1920" Background="#0a0026"> 
+                        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Background="#0a0026"></Button> 
+                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                </Grid>
+                <StackPanel Orientation="Vertical" Spacing="0" HorizontalAlignment="Center" VerticalAlignment="Top" Background="MidnightBlue">
+                </StackPanel>
+        </Grid> 
         -->
+        
 </Window>
