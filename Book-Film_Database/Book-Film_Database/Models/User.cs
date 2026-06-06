@@ -2,5 +2,6 @@
 
 public class User
 {
-    
+    string Username { get; set; }
+    string Password { get; set; }
 }
