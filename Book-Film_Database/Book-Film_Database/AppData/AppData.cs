@@ -12,11 +12,11 @@ public class AppData
     public List<Anime> AnimesList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Anime.csv");
+    string path2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Manga.csv");
     
-    public void ReadCSV()
+    public void ReadAnimeCSV()
     {
         AnimesList.Clear();
-        MangaList.Clear();
         int column = 0;
         int FieldCount = 0;
         int Rank = 0;
@@ -73,6 +73,56 @@ public class AppData
                                     AnimesList.Add(new Anime {Ranks = Rank, Name = Name, JapaneseName = JapaneseName, Description = Description, RelatedAnime = RelatedAnime, RelatedManga = RelatedManga,  Rating = Rating, Genre = Genre});
                                     Console.WriteLine($" {Rank}");
                                     column = 0;
+                                    break;
+                            }
+                            
+                        }    
+                    }
+            }
+        }
+    }
+    public void ReadMangaCSV()
+    {
+        MangaList.Clear();
+        int columnM = 0;
+        int FieldCountM = 0;
+        string NameM = "";
+        string GenreM = "";
+        string DescriptionM = "";
+        string RatingM = "";
+        Console.WriteLine($"Reading CSV from {path2}");
+        using (TextFieldParser parser = new TextFieldParser(path2))
+        {
+            parser.TextFieldType = FieldType.Delimited;
+            parser.SetDelimiters(",");
+            while (!parser.EndOfData)
+            {
+                    string[] fields = parser.ReadFields();
+                    foreach (string field in fields)
+                    {
+                        FieldCountM++;
+                        if (FieldCountM > 6)
+                        {
+                            Console.WriteLine(columnM);
+                            columnM++;
+                            switch (columnM)
+                            {
+                                case 1: 
+                                    NameM = field;
+                                    break;
+                                case 2:
+                                    DescriptionM = field;
+                                    break;
+                                case 3:
+                                    RatingM = field;
+                                    break;
+                                case 5:
+                                    GenreM = field;
+                                    break;
+                                case 6:
+                                    
+                                    MangaList.Add(new Manga {Name = NameM, Description = DescriptionM, Rating = RatingM, Genre = GenreM});
+                                    columnM = 0;
                                     break;
                             }
                             

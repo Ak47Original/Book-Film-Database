@@ -5,11 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              Background="#040012"
-             x:Class="Book_Film_Database.AnimeList">
+             x:Class="Book_Film_Database.MangaList">
     <Grid>
-        <ListBox Name="AnimeListBox" Background="#040012" Height="1080">
+        <ListBox Name="MangaListBox" Background="#040012" Height="1080">
             <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:Anime">
+                <DataTemplate x:DataType="models:Manga">
                     <Button HorizontalAlignment="Stretch" Background="#0e0433">
                         <StackPanel HorizontalAlignment="Stretch" Background="#0e0433">
                             <TextBlock HorizontalAlignment="Stretch" FontSize="20" Text="{Binding Name}"></TextBlock>

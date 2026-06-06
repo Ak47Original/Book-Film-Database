@@ -25,4 +25,18 @@ public partial class MainWindow : Window
             Console.WriteLine(ex.StackTrace);
         }
     }
+    public void MangaListButton(object? sender, RoutedEventArgs e)
+    {
+        
+        try
+        {
+            MainContent.Content = null;
+            MainContent.Content = new MangaList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine(ex.StackTrace);
+        }
+    }
 }

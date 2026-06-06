@@ -10,25 +10,26 @@ using Avalonia.Media;
 
 namespace Book_Film_Database;
 
-public partial class AnimeList : UserControl
+public partial class MangaList : UserControl
 {
-    public AnimeList()
+    public MangaList()
     {
         InitializeComponent();
-        
         Console.WriteLine($"Počet anime: {App.AppData.AnimesList.Count}");
         Console.WriteLine($"Počet mangy: {App.AppData.MangaList.Count}");
-        AnimeListBox.ItemsSource = App.AppData.AnimesList;
+        MangaListBox.ItemsSource = App.AppData.MangaList;
+        
+        
         /*
-        foreach (var anime in App.AppData.AnimesList)
+        foreach (var manga in App.AppData.MangaList)
         {
             var Button = new Button {HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433")) };
             var StackPanel = new StackPanel {HorizontalAlignment = HorizontalAlignment.Stretch,};
-            AnimeContainer.Children.Add(Button);
-            var AName = new TextBlock{Text = anime.Name, FontSize = 30, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
-            StackPanel.Children.Add(AName);
-            var AGenre = new TextBlock{Text = anime.Genre, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
-            StackPanel.Children.Add(AGenre);
+            MangaContainer.Children.Add(Button);
+            var MName = new TextBlock{Text = manga.Name, FontSize = 30, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
+            StackPanel.Children.Add(MName);
+            var MGenre = new TextBlock{Text = manga.Genre, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
+            StackPanel.Children.Add(MGenre);
             Button.Content = StackPanel;
 
             var StackPanel = new StackPanel {HorizontalAlignment = HorizontalAlignment.Stretch,};
@@ -37,11 +38,7 @@ public partial class AnimeList : UserControl
             StackPanel.Children.Add(AName);
             var AGenre = new TextBlock { Text = anime.Genre, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
             StackPanel.Children.Add(AGenre);
-            
         }
         */
-        
-        //<TextBlock Text="Demon Slayer" FontSize="30"></TextBlock>
-        //    <TextBlock Text="Action" FontSize="25"></TextBlock>
     }
 }

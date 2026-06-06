@@ -15,8 +15,9 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
         
         //var appData = new AppData();  
-        AppData.ReadCSV();
-        
+        AppData.ReadAnimeCSV();
+        AppData.ReadMangaCSV();
+
     }
 
     public override void OnFrameworkInitializationCompleted()
