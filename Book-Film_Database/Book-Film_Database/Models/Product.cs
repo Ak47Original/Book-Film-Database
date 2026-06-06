@@ -15,7 +15,7 @@ public class Anime : Product
     public string Description { get; set; }
     public string RelatedAnime { get; set; }
     public string RelatedManga { get; set; }
-    public float Rating { get; set; }
+    public string Rating { get; set; }
 }
 
 public class Manga : Product

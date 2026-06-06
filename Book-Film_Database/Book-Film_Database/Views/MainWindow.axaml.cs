@@ -10,20 +10,19 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
     }
-    public void AnimeList_Click()
+
+    public void AnimeListButton(object? sender, RoutedEventArgs e)
     {
+        
         try
         {
-            
+            MainContent.Content = null;
+            MainContent.Content = new AnimeList();
         }
         catch (Exception ex)
         {
-            
+            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine(ex.StackTrace);
         }
-    }
-
-    public void AnimeList(object? sender, RoutedEventArgs e)
-    {
-        Content = new AnimeList();
     }
 }

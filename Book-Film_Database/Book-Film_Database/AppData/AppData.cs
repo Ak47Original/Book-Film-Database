@@ -6,15 +6,15 @@ using Microsoft.VisualBasic.FileIO;
 
 
 namespace Book_Film_Database.Data;
-
+ 
 public class AppData
 {
-    public List<Anime> AnimeList { get; set; } = new List<Anime>();
+    public List<Anime> AnimesList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
     
     public void ReadCSV()
     {
-        AnimeList.Clear();
+        AnimesList.Clear();
         MangaList.Clear();
         int column = 0;
         int FieldCount = 0;
@@ -25,7 +25,7 @@ public class AppData
         string Description = "";
         string RelatedAnime = "";
         string RelatedManga = "";
-        float Rating = 0;
+        string Rating = "";
         
         using (TextFieldParser parser = new TextFieldParser(@"C:\Users\andri\Desktop\Anime.csv"))
         {
@@ -36,6 +36,7 @@ public class AppData
                     string[] fields = parser.ReadFields();
                     foreach (string field in fields)
                     {
+                        FieldCount++;
                         if (FieldCount > 17)
                         {
                             Console.WriteLine(column);
@@ -55,7 +56,7 @@ public class AppData
                                     Genre = field;
                                     break;
                                 case 9:
-                                    Rating =  float.Parse(field);
+                                    Rating =  field;
                                     break;
                                 case 12:
                                     Description = field;
@@ -66,18 +67,11 @@ public class AppData
                                 case 15:
                                     RelatedAnime = field;
                                     break;
-                                case 18:
-                                
-                                    Anime anime = new Anime();
-                                    anime.Ranks = Rank;
-                                    anime.Name = Name;
-                                    anime.JapaneseName = JapaneseName;
-                                    anime.Description = Description;
-                                    anime.RelatedAnime = RelatedAnime;
-                                    anime.RelatedManga = RelatedManga;
-                                    anime.Rating = Rating;
-                                    AnimeList.Add(anime);
-                                    Console.WriteLine($" {anime.Ranks},{anime.Name} ");
+                                case 17:
+                                    
+                                    AnimesList.Add(new Anime {Ranks = Rank, Name = Name, JapaneseName = JapaneseName, Description = Description, RelatedAnime = RelatedAnime, RelatedManga = RelatedManga,  Rating = Rating, Genre = Genre});
+                                    Console.WriteLine($" {Rank}");
+                                    column = 0;
                                     break;
                             }
                             

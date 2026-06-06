@@ -9,12 +9,13 @@ namespace Book_Film_Database;
 
 public partial class App : Application
 {
+    public static AppData AppData { get; private set; } = new AppData();
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
         
-        var appData = new AppData();
-        appData.ReadCSV();
+        //var appData = new AppData();  
+        AppData.ReadCSV();
         
     }
 
