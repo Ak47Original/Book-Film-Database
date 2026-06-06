@@ -5,6 +5,7 @@ using Avalonia.Markup.Xaml;
 using Book_Film_Database.Models;
 using Book_Film_Database.Data;
 using System;
+using System.ComponentModel.DataAnnotations;
 using Avalonia.Layout;
 using Avalonia.Media;
 
@@ -12,10 +13,10 @@ namespace Book_Film_Database;
 
 public partial class AnimeList : UserControl
 {
+    public List<Anime> SearchedAnimeList { get; set; } = new List<Anime>();
     public AnimeList()
     {
         InitializeComponent();
-        
         Console.WriteLine($"Počet anime: {App.AppData.AnimesList.Count}");
         Console.WriteLine($"Počet mangy: {App.AppData.MangaList.Count}");
         AnimeListBox.ItemsSource = App.AppData.AnimesList;
@@ -43,5 +44,50 @@ public partial class AnimeList : UserControl
         
         //<TextBlock Text="Demon Slayer" FontSize="30"></TextBlock>
         //    <TextBlock Text="Action" FontSize="25"></TextBlock>
+    }
+
+    private void SearchTextBox_OnTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        var textBox = sender as TextBox;
+        string currentText = "";
+        int i = 0;
+        if (textBox != null)
+        {
+            currentText = textBox.Text;
+            if (currentText.Length == 1){
+                foreach (var anime in App.AppData.AnimesList)
+                {
+                    if (currentText[0] == anime.Name[0]) 
+                    {
+                        SearchedAnimeList.Add(anime); 
+                        Console.WriteLine(anime.Name);
+                    }
+                }
+                Console.WriteLine("---------------------------------------------------");
+            }
+            if (currentText.Length > 1)
+            {
+                
+                i = SearchedAnimeList.Count;
+                for (int l = 0; l < i; l++)
+                {
+                    if (currentText[currentText.Length - 1] != SearchedAnimeList[l].Name[currentText.Length - 1])
+                    {   
+                        Console.WriteLine(currentText[currentText.Length - 1]);
+                        Console.WriteLine(SearchedAnimeList[l].Name[currentText.Length - 1]);
+                        Console.WriteLine("------------------------");
+                        SearchedAnimeList.Remove(SearchedAnimeList[l]);
+                        i--;
+                        l--;
+                    }
+                }
+
+                foreach (var anime in SearchedAnimeList)
+                {
+                    Console.WriteLine(anime.Name);
+                }
+                Console.WriteLine("---------------------------------------------------");
+            }
+        }
     }
 }

@@ -6,18 +6,38 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              Background="#040012"
              x:Class="Book_Film_Database.AnimeList">
-    <Grid>
-        <ListBox Name="AnimeListBox" Background="#040012" Height="1080">
+    <Grid RowDefinitions="50, *, 50" RowSpacing="30" Height="930" VerticalAlignment="Stretch">
+        
+        <TextBox Grid.Row="0" Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" PlaceholderText="Search" Height="50" HorizontalAlignment="Stretch"></TextBox>
+        <Button Content="Filter" Height="50" Width="200" HorizontalAlignment="Right">
+            <Button.Flyout>
+                <MenuFlyout>
+                    <MenuItem Header="Watched"></MenuItem>
+                    <MenuItem Header="Unwatched"></MenuItem>
+                    <MenuItem Header="Planned"></MenuItem>
+                    <MenuItem Header="Watching"></MenuItem>
+                    <MenuItem Header="Dropped"></MenuItem>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+        <ListBox Grid.Row="1" Name="AnimeListBox" Background="#040012">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:Anime">
-                    <Button HorizontalAlignment="Stretch" Background="#0e0433">
-                        <StackPanel HorizontalAlignment="Stretch" Background="#0e0433">
-                            <TextBlock HorizontalAlignment="Stretch" FontSize="20" Text="{Binding Name}"></TextBlock>
-                            <TextBlock HorizontalAlignment="Stretch" FontSize="15" Text="{Binding Genre}"></TextBlock>
-                        </StackPanel>
-                    </Button>    
+                    <Grid>
+                        <Button HorizontalAlignment="Stretch" Background="#0e0433">
+                            <StackPanel HorizontalAlignment="Stretch" Background="#0e0433">
+                                <TextBlock HorizontalAlignment="Stretch" FontSize="20" Text="{Binding Name}"></TextBlock>
+                                <TextBlock HorizontalAlignment="Stretch" FontSize="15" Text="{Binding Genre}"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <ToggleButton IsChecked="False" Background="#0e0433" Width="50" Height="50" HorizontalAlignment="Right">
+                            <Path Stroke="White" StrokeThickness="2" Fill="Transparent" Stretch="Uniform" Height="30" Width="30" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z"/>
+                            <!-- <Path Fill="Red" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Width="30"/> -->
+                        </ToggleButton>
+                    </Grid>    
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <TextBlock Grid.Row="2"></TextBlock>
     </Grid>
 </UserControl>
