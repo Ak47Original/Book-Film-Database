@@ -11,6 +11,7 @@ public class AppData
 {
     public List<Anime> AnimesList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
+    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Anime.csv");
     
     public void ReadCSV()
     {
@@ -26,8 +27,8 @@ public class AppData
         string RelatedAnime = "";
         string RelatedManga = "";
         string Rating = "";
-        
-        using (TextFieldParser parser = new TextFieldParser(@"C:\Users\andri\Desktop\Anime.csv"))
+        Console.WriteLine($"Reading CSV from {path}");
+        using (TextFieldParser parser = new TextFieldParser(path))
         {
             parser.TextFieldType = FieldType.Delimited;
             parser.SetDelimiters(",");

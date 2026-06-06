@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Book_Film_Database.AnimeList">
-    <StackPanel Background="BlueViolet">
+    <StackPanel>
         <ScrollViewer HorizontalScrollBarVisibility="Visible" >
-            <StackPanel Name="AnimeContainer" HorizontalAlignment="Center">
+            <StackPanel Name="AnimeContainer" HorizontalAlignment="Stretch" Spacing="10">
             </StackPanel>
         </ScrollViewer>
         
