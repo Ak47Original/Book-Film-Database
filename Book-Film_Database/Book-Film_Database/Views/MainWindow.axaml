@@ -11,7 +11,7 @@
         <Grid>
                 <UniformGrid Rows="1" Columns="5" VerticalAlignment="Top" HorizontalAlignment="Center" Height="50" Width="1920"  Background="#0a0026">        
                         <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button> 
-                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
+                        <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026" Click="AnimeList"></Button>
                         <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
                         <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>
                         <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Background="#0a0026"></Button>

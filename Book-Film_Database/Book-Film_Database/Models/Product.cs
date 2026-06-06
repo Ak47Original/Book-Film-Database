@@ -1,5 +1,6 @@
 ﻿namespace Book_Film_Database.Models;
 
+
 public abstract class Product
 {
 
