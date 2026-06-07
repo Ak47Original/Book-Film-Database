@@ -30,10 +30,10 @@
                                 <TextBlock HorizontalAlignment="Stretch" FontSize="15" Text="{Binding Genre}"></TextBlock>
                             </StackPanel>
                         </Button>
-                        <ToggleButton Click="Button_OnClick" Background="#0e0433" Width="50" Height="50" HorizontalAlignment="Right">
+                        <ToggleButton Click="Button_OnClick" IsChecked="{Binding IsFavorite, Mode=TwoWay}" Background="#0e0433" Width="50" Height="50" HorizontalAlignment="Right">
                             <Grid Width="30" Height="30">
                                 <Path  Stroke="White" StrokeThickness="5" Fill="Transparent" Stretch="Uniform" Height="30" Width="30" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z"/>
-                                <Path Name="Heart" IsVisible="False" Fill="Red" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Width="30"/>
+                                <Path Name="Heart" IsVisible="{Binding IsFavorite}" Fill="Red" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Width="30"/>
                             </Grid>
                         </ToggleButton>
                     </Grid>    

@@ -103,5 +103,28 @@ public partial class AnimeList : UserControl
         var anime = button.DataContext as Anime;
         heart.IsVisible = button.IsChecked ?? false;
         
+        bool IsChecked = button.IsChecked ?? false;
+        
+        if (heart != null)
+        {
+            heart.IsVisible = IsChecked;
+        }
+
+        if (anime != null)
+        {
+            anime.IsFavorite = IsChecked;
+
+            if (IsChecked)
+            {
+                if (!App.AppData.FavoritesAnimeList.Contains(anime))
+                {
+                    App.AppData.FavoritesAnimeList.Add(anime);
+                }
+            }
+            else
+            {
+                App.AppData.FavoritesAnimeList.Remove(anime);
+            }
+        }
     }
 }

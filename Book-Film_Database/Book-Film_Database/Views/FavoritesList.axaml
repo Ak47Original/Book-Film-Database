@@ -1,0 +1,23 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:Book_Film_Database.Models"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             Background="#040012"
+             x:Class="Book_Film_Database.FavoritesList">
+    <Grid>
+        <ListBox Name="MangaListBox" Background="#040012" Height="1080">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:Anime">
+                    <Button HorizontalAlignment="Stretch" Background="#0e0433">
+                        <StackPanel HorizontalAlignment="Stretch" Background="#0e0433">
+                            <TextBlock HorizontalAlignment="Stretch" FontSize="20" Text="{Binding Name}"></TextBlock>
+                            <TextBlock HorizontalAlignment="Stretch" FontSize="15" Text="{Binding Genre}"></TextBlock>
+                        </StackPanel>
+                    </Button>    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

@@ -10,7 +10,12 @@ namespace Book_Film_Database.Data;
 public class AppData
 {
     public List<Anime> AnimesList { get; set; } = new List<Anime>();
+    public List<Anime> FavoritesAnimeList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
+    public List<Manga> FavoritesMangaList { get; set; } = new List<Manga>();
+    
+
+    
     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Anime.csv");
     string path2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Manga.csv");
     
