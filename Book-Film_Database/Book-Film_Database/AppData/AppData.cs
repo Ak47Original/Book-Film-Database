@@ -13,6 +13,7 @@ public class AppData
     public List<Anime> FavoritesAnimeList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
     public List<Manga> FavoritesMangaList { get; set; } = new List<Manga>();
+    public List<Book_Film_Database.Models.Review> ReviewsList { get; set; } = new List<Book_Film_Database.Models.Review>();
     
 
     

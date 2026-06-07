@@ -27,10 +27,9 @@
         <DependentUpon>App.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Models\" />
+      <Compile Update="Views\ReviewsListList.axaml.cs">
+        <DependentUpon>Reviews.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

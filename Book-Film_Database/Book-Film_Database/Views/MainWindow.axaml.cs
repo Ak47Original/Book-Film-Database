@@ -9,6 +9,8 @@ public partial class MainWindow : Window
     private readonly AnimeList _animePage = new AnimeList();
     private readonly MangaList _mangaPage = new MangaList();
     private readonly FavoritesList _favoritesPage = new FavoritesList();
+    private readonly ReviewsList _reviewsPage = new ReviewsList();
+
     public MainWindow()
     {
         InitializeComponent();
@@ -49,6 +51,18 @@ public partial class MainWindow : Window
             MainContent.Content = null;
             _favoritesPage.ShowFavorite(App.AppData.FavoritesAnimeList);
             MainContent.Content = _favoritesPage;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CHYBA: {ex.Message}");
+        }
+    }
+    private void ReviewsListButton(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            MainContent.Content = null;
+            MainContent.Content = _reviewsPage; 
         }
         catch (Exception ex)
         {
