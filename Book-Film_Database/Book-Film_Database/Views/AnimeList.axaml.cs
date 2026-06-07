@@ -6,8 +6,12 @@ using Book_Film_Database.Models;
 using Book_Film_Database.Data;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Avalonia.Controls.Shapes;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Controls.Primitives;
+
 
 namespace Book_Film_Database;
 
@@ -89,5 +93,15 @@ public partial class AnimeList : UserControl
                 Console.WriteLine("---------------------------------------------------");
             }
         }
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var button = sender as ToggleButton;
+        var grid = button.Content as Grid;
+        var heart = grid.Children[1] as Path;
+        var anime = button.DataContext as Anime;
+        heart.IsVisible = button.IsChecked ?? false;
+        
     }
 }
