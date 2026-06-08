@@ -28,7 +28,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.ColumnDefinitions="*, 400">
-            <ListBox Name="AnimeListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left">
+            <ListBox Name="AnimeListBox" MinHeight="1" Width="1500" Background="#040012" HorizontalAlignment="Left">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="models:Anime">
                         <Grid>

@@ -29,7 +29,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Grid.ColumnDefinitions="*, 400">
-            <ListBox Name="MangaListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left">
+            <ListBox Name="MangaListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left" Width="1500">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="models:Manga">
                         <Grid>
