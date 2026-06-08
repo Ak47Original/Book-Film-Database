@@ -21,6 +21,13 @@ public class AppData
     public List<Anime> UnwatchedAnimeList { get; set; } = new List<Anime>();
     public List<Book_Film_Database.Models.Review> ReviewsList { get; set; } = new List<Book_Film_Database.Models.Review>();
     
+    public List<Manga> ReadMangaList { get; set; } = new List<Manga>();
+    public List<Manga> ReadingMangaList { get; set; } = new List<Manga>();
+    public List<Manga> PlanningMangaList { get; set; } = new List<Manga>();
+    public List<Manga> DroppedMangaList { get; set; } = new List<Manga>();
+    public List<Manga> UnreadMangaList { get; set; } = new List<Manga>();
+
+
 
     
     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Anime.csv");
@@ -222,7 +229,7 @@ public class AppData
                             anime.IsFavorite = true; 
                         }
                     }
-                    /*foreach (var manga in MangaList)
+                    foreach (var manga in MangaList)
                     {
                         bool isFav = FavoritesMangaList.Any(f => f.Name == manga.Name);
                         if (isFav)
@@ -230,7 +237,7 @@ public class AppData
                             manga.IsFavorite = true; // uprav název podle své třídy Manga
                         }
                     }
-                    */
+                    
                     Console.WriteLine("User data loaded.");
                 }
             }

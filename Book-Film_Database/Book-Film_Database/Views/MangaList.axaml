@@ -6,18 +6,64 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              Background="#040012"
              x:Class="Book_Film_Database.MangaList">
-    <Grid>
-        <ListBox Name="MangaListBox" Background="#040012" Height="1080">
-            <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="models:Manga">
-                    <Button HorizontalAlignment="Stretch" Background="#0e0433">
-                        <StackPanel HorizontalAlignment="Stretch" Background="#0e0433">
-                            <TextBlock HorizontalAlignment="Stretch" FontSize="20" Text="{Binding Name}"></TextBlock>
-                            <TextBlock HorizontalAlignment="Stretch" FontSize="15" Text="{Binding Genre}"></TextBlock>
-                        </StackPanel>
-                    </Button>    
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+    <Grid RowDefinitions="50, *, 50" RowSpacing="30" Height="930" VerticalAlignment="Stretch">
+        
+        <TextBox Grid.Row="0" Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" PlaceholderText="Search" Height="50" HorizontalAlignment="Stretch"></TextBox>
+        <Button Content="Filter" Height="50" Width="200" HorizontalAlignment="Right">
+            <Button.Flyout>
+                <MenuFlyout>
+                    <MenuItem Header="All" Click="FilterAll"></MenuItem>
+                    <MenuItem Header="Read" Click="FilterRead"></MenuItem>
+                    <MenuItem Header="Unread" Click="FilterUnread"></MenuItem>
+                    <MenuItem Header="Reading" Click="FilterReading"></MenuItem>
+                    <MenuItem Header="Planning" Click="FilterPlanning"></MenuItem>
+                    <MenuItem Header="Dropped" Click="FilterDropped"></MenuItem>
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+        <Grid Grid.Row="1" Grid.ColumnDefinitions="*, 400">
+            <ListBox  Name="MangaListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="models:Manga">
+                        <Grid>
+                            <Button Click="Button_OnClick" HorizontalAlignment="Stretch" Background="#0e0433">
+                                <StackPanel HorizontalAlignment="Stretch" Background="#0e0433">
+                                    <TextBlock HorizontalAlignment="Stretch" FontSize="20" Text="{Binding Name}"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Stretch" FontSize="15" Text="{Binding Genre}"></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <ToggleButton Click="ToggleButton_OnClick" IsChecked="{Binding IsFavorite, Mode=TwoWay}" Background="#0e0433" Width="50" Height="50" HorizontalAlignment="Right">
+                                <Grid Width="30" Height="30">
+                                    <Path  Stroke="White" StrokeThickness="5" Fill="Transparent" Stretch="Uniform" Height="30" Width="30" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z"/>
+                                    <Path Name="Heart" IsVisible="{Binding IsFavorite}" Fill="Red" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Width="30"/>
+                                </Grid>
+                            </ToggleButton>
+                        </Grid>    
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Border Grid.Column="1" x:Name="DetailPanel" IsVisible="False" Background="#0e0433" CornerRadius="8" Padding="20" VerticalAlignment="Top">
+                <StackPanel Spacing="12">
+                    <TextBlock Name="Name" TextWrapping="Wrap" Text="New Review" FontSize="25" Foreground="White" Margin="0,0,0,5"/>
+                    <TextBlock Name="Genre" TextWrapping="Wrap" Text="New Review" FontSize="18" Foreground="White" Margin="0,0,0,5"/>
+                    <TextBlock Name="Description" TextWrapping="Wrap" Text="New Review" FontSize="18" Foreground="White" Margin="0,0,0,5"/>
+                    <Grid ColumnDefinitions="*, *">
+                        <Button Grid.Column="0" Content="Status" Background="#31108f" Foreground="White" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,10,5,0">
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuItem Header="Set as Unread" Click="StatusUnread_OnClick"></MenuItem>
+                                    <MenuItem Header="Set as Read" Click="StatusRead_OnClick"></MenuItem>
+                                    <MenuItem Header="Set as Reading" Click="StatusReading_OnClick"></MenuItem>
+                                    <MenuItem Header="Set as Planning" Click="StatusPlanning_OnClick"></MenuItem>
+                                    <MenuItem Header="Set as Dropped" Click="StatusDropped_OnClick"></MenuItem>
+                                </MenuFlyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button Grid.Column="1" Content="Close" Click="CloseButton_OnClick" Background="Transparent" Foreground="Gray" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5,10,0,0"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>    
+        <TextBlock Grid.Row="2"></TextBlock>
     </Grid>
 </UserControl>

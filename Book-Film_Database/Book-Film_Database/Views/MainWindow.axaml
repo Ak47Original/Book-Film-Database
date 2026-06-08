@@ -10,10 +10,10 @@
         
         <StackPanel>
                 <UniformGrid  Rows="1" Columns="5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="50" Background="#0a0026">        
-                        <Button Content="Overview" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026"></Button> 
                         <Button Content="Anime List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026" Click="AnimeListButton"></Button>
                         <Button Content="Manga List" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026" Click="MangaListButton"></Button>
-                        <Button Content="Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026" Click="FavoritesListButton"></Button>
+                        <Button Content="Anime Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026" Click="FavoritesListButton"></Button>
+                        <Button Content="Manga Favorites" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026" Click="MangaFavoritesList"></Button> 
                         <Button Content="Reviews" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#0a0026" Click="ReviewsListButton"></Button>
                 </UniformGrid>
                 <StackPanel Orientation="Vertical" Spacing="0" HorizontalAlignment="Center" VerticalAlignment="Top" Background="MidnightBlue">

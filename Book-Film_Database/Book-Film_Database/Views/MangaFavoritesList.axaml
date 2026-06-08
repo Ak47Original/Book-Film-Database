@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:models="clr-namespace:Book_Film_Database.Models"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:Class="Book_Film_Database.MangaFavoritesList">
+    <Grid>
+        <ListBox Name="MyFavoritesMangaListBox" Background="#040012" Height="1080">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="models:Manga">
+                    <Grid Margin="5" Background="#0e0433" HorizontalAlignment="Stretch">
+                        
+                        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="#0e0433" Padding="10">
+                            <StackPanel>
+                                <TextBlock FontSize="20" Text="{Binding Name}" Foreground="White"></TextBlock>
+                                <TextBlock FontSize="15" Text="{Binding Genre}" Foreground="Gray"></TextBlock>
+                            </StackPanel>
+                        </Button>    
+                        
+                        <Button Content="Odebrat 🗑️" 
+                                Click="RemoveFromMangaFavorites_OnClick" 
+                                Background="#441111" 
+                                Foreground="White" 
+                                Padding="15,10"
+                                Margin="0,0,10,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Cursor="Hand"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

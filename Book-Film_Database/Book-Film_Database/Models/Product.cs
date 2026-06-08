@@ -26,4 +26,5 @@ public class Manga : Product
     public string Genre { get; set; }
     public string Description { get; set; }
     public string Rating { get; set; }
+    public bool IsFavorite { get; set; } = false;
 }
