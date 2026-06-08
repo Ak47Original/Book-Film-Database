@@ -19,45 +19,21 @@ public partial class MangaList : UserControl
     private Manga _selectedManga;
     private List<Manga> _mangaList;
     private int SearchLength;
+
     public MangaList()
     {
         InitializeComponent();
         
         MangaListBox.ItemsSource = App.AppData.MangaList;
         _mangaList = App.AppData.MangaList;
-        /*
-        foreach (var anime in App.AppData.AnimesList)
-        {
-            var Button = new Button {HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433")) };
-            var StackPanel = new StackPanel {HorizontalAlignment = HorizontalAlignment.Stretch,};
-            AnimeContainer.Children.Add(Button);
-            var AName = new TextBlock{Text = anime.Name, FontSize = 30, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
-            StackPanel.Children.Add(AName);
-            var AGenre = new TextBlock{Text = anime.Genre, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
-            StackPanel.Children.Add(AGenre);
-            Button.Content = StackPanel;
-
-            var StackPanel = new StackPanel {HorizontalAlignment = HorizontalAlignment.Stretch,};
-            AnimeContainer.Children.Add(StackPanel);
-            var AName = new TextBlock { Text = anime.Name, FontSize = 30, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
-            StackPanel.Children.Add(AName);
-            var AGenre = new TextBlock { Text = anime.Genre, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
-            StackPanel.Children.Add(AGenre);
-
-        }
-        */
-
-        //<TextBlock Text="Demon Slayer" FontSize="30"></TextBlock>
-        //    <TextBlock Text="Action" FontSize="25"></TextBlock>
     }
 
     private void SearchTextBox_OnTextChanged(object? sender, TextChangedEventArgs e)
     {
         var textBox = sender as TextBox;
-        string currentText = "";
-        int i = 0;
-        currentText = textBox.Text;
+        string currentText = textBox.Text ?? "";
         SearchedMangaList.RemoveAll(item => item.Name.Length < currentText.Length);
+        
         if (currentText.Length != 0)
         {
             if (currentText.Length < SearchLength)
@@ -75,13 +51,14 @@ public partial class MangaList : UserControl
                 {
                     for (int k = 1; k < currentText.Length; k++)
                     {
-                        SearchedMangaList.RemoveAll(item => item.Name[k]  != currentText[k]);
+                        SearchedMangaList.RemoveAll(item => item.Name[k] != currentText[k]);
                     }
                 }
             }
             else
             {
-                if (currentText.Length == 1){
+                if (currentText.Length == 1)
+                {
                     foreach (var manga in _mangaList)
                     {
                         if (currentText[0] == manga.Name[0]) 
@@ -92,9 +69,10 @@ public partial class MangaList : UserControl
                 }
                 if (currentText.Length > 1)
                 {
-                    SearchedMangaList.RemoveAll(item => item.Name[currentText.Length-1] != currentText[currentText.Length-1]);
+                    SearchedMangaList.RemoveAll(item => item.Name[currentText.Length - 1] != currentText[currentText.Length - 1]);
                 }
             }
+            
             MangaListBox.ItemsSource = App.AppData.MangaList;
             if (SearchedMangaList.Count > 0)
             {
@@ -139,12 +117,14 @@ public partial class MangaList : UserControl
             else
             {
                 App.AppData.FavoritesMangaList.Remove(manga);
+                App.AppData.SaveUserData();
             }
         }
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
+        AddMangaPanel.IsVisible = false;
         DetailPanel.IsVisible = true;
         var button = sender as Button;
         var manga = button.DataContext as Manga;
@@ -152,8 +132,6 @@ public partial class MangaList : UserControl
         Name.Text = manga.Name;
         Genre.Text = manga.Genre;
         Description.Text = manga.Description;
-        
-        
     }
 
     private void CloseButton_OnClick(object? sender, RoutedEventArgs e)
@@ -292,18 +270,22 @@ public partial class MangaList : UserControl
         MangaListBox.ItemsSource = _mangaList.ToArray();
     }
 
+    private void FilterAll(object? sender, RoutedEventArgs e)
+    {
+        MangaListBox.ItemsSource = App.AppData.MangaList;
+        _mangaList = App.AppData.MangaList;
+    }
+
     private void FilterRead(object? sender, RoutedEventArgs e)
     {
         MangaListBox.ItemsSource = App.AppData.ReadMangaList;
         _mangaList = App.AppData.ReadMangaList;
-
     }
 
     private void FilterUnread(object? sender, RoutedEventArgs e)
     {
         MangaListBox.ItemsSource = App.AppData.UnreadMangaList;
         _mangaList = App.AppData.UnreadMangaList;
-
     }
 
     private void FilterReading(object? sender, RoutedEventArgs e)
@@ -316,7 +298,6 @@ public partial class MangaList : UserControl
     {
         MangaListBox.ItemsSource = App.AppData.PlanningMangaList;
         _mangaList = App.AppData.PlanningMangaList;
-
     }
 
     private void FilterDropped(object? sender, RoutedEventArgs e)
@@ -325,9 +306,54 @@ public partial class MangaList : UserControl
         _mangaList = App.AppData.DroppedMangaList;
     }
 
-    private void FilterAll(object? sender, RoutedEventArgs e)
+    // 🔥 KOMPLETNĚ OPRAVENÉ METODY PRO PŘIDÁVÁNÍ VLASTNÍ MANGY:
+
+    private void AddCustomMangaButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        MangaListBox.ItemsSource = App.AppData.MangaList;
+        DetailPanel.IsVisible = false;
+        AddMangaPanel.IsVisible = true;
+    }
+
+    private void CancelCustomManga_OnClick(object? sender, RoutedEventArgs e)
+    {
+        AddMangaPanel.IsVisible = false;
+        NewMangaTitleInput.Text = "";
+        NewMangaGenreInput.Text = "";
+        NewMangaDescInput.Text = "";
+    }
+
+    private void SaveCustomManga_OnClick(object? sender, RoutedEventArgs e)
+    {
+        string title = NewMangaTitleInput.Text ?? "";
+        string genre = NewMangaGenreInput.Text ?? "";
+        string description = NewMangaDescInput.Text ?? "";
+        
+        if (string.IsNullOrWhiteSpace(title))
+        {
+            NewMangaTitleInput.PlaceholderText = "Název je povinný!";
+            return;
+        }
+        
+        // Opraveno na model Manga
+        var newManga = new Book_Film_Database.Models.Manga
+        {
+            Name = title,
+            Genre = genre,
+            Description = description,
+            IsFavorite = false
+        };
+        
+        App.AppData.CustomMangaList.Add(newManga);
+        App.AppData.MangaList.Add(newManga);
+        
+        App.AppData.SaveUserData();
+        
+        MangaListBox.ItemsSource = App.AppData.MangaList.ToArray();
         _mangaList = App.AppData.MangaList;
+        
+        AddMangaPanel.IsVisible = false;
+        NewMangaTitleInput.Text = "";
+        NewMangaGenreInput.Text = "";
+        NewMangaDescInput.Text = "";
     }
 }

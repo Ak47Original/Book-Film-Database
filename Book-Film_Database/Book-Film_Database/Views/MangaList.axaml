@@ -6,23 +6,30 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              Background="#040012"
              x:Class="Book_Film_Database.MangaList">
+    
     <Grid RowDefinitions="50, *, 50" RowSpacing="30" Height="930" VerticalAlignment="Stretch">
         
-        <TextBox Grid.Row="0" Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" PlaceholderText="Search" Height="50" HorizontalAlignment="Stretch"></TextBox>
-        <Button Content="Filter" Height="50" Width="200" HorizontalAlignment="Right">
-            <Button.Flyout>
-                <MenuFlyout>
-                    <MenuItem Header="All" Click="FilterAll"></MenuItem>
-                    <MenuItem Header="Read" Click="FilterRead"></MenuItem>
-                    <MenuItem Header="Unread" Click="FilterUnread"></MenuItem>
-                    <MenuItem Header="Reading" Click="FilterReading"></MenuItem>
-                    <MenuItem Header="Planning" Click="FilterPlanning"></MenuItem>
-                    <MenuItem Header="Dropped" Click="FilterDropped"></MenuItem>
-                </MenuFlyout>
-            </Button.Flyout>
-        </Button>
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto, Auto" HorizontalAlignment="Stretch">
+            <TextBox Grid.Column="0" Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" PlaceholderText="Search" Height="50" Margin="0,0,10,0"></TextBox>
+            
+            <Button Grid.Column="1" Content="Add New Manga ➕" Click="AddCustomMangaButton_OnClick" Height="50" Background="#0e0433" Foreground="White" Padding="15,0" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+            
+            <Button Grid.Column="2" Content="Filter" Height="50" Width="200" HorizontalAlignment="Right">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuItem Header="All" Click="FilterAll"></MenuItem>
+                        <MenuItem Header="Read" Click="FilterRead"></MenuItem>
+                        <MenuItem Header="Unread" Click="FilterUnread"></MenuItem>
+                        <MenuItem Header="Reading" Click="FilterReading"></MenuItem>
+                        <MenuItem Header="Planning" Click="FilterPlanning"></MenuItem>
+                        <MenuItem Header="Dropped" Click="FilterDropped"></MenuItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+        </Grid>
+
         <Grid Grid.Row="1" Grid.ColumnDefinitions="*, 400">
-            <ListBox  Name="MangaListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left">
+            <ListBox Name="MangaListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="models:Manga">
                         <Grid>
@@ -34,7 +41,7 @@
                             </Button>
                             <ToggleButton Click="ToggleButton_OnClick" IsChecked="{Binding IsFavorite, Mode=TwoWay}" Background="#0e0433" Width="50" Height="50" HorizontalAlignment="Right">
                                 <Grid Width="30" Height="30">
-                                    <Path  Stroke="White" StrokeThickness="5" Fill="Transparent" Stretch="Uniform" Height="30" Width="30" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z"/>
+                                    <Path Stroke="White" StrokeThickness="5" Fill="Transparent" Stretch="Uniform" Height="30" Width="30" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z"/>
                                     <Path Name="Heart" IsVisible="{Binding IsFavorite}" Fill="Red" Data="M 10,30 A 20,20,0,0,1,50,30 A 20,20,0,0,1,90,30 Q 90,60,50,90 Q 10,60,10,30 Z" Stretch="Uniform" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="30" Width="30"/>
                                 </Grid>
                             </ToggleButton>
@@ -42,6 +49,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
             <Border Grid.Column="1" x:Name="DetailPanel" IsVisible="False" Background="#0e0433" CornerRadius="8" Padding="20" VerticalAlignment="Top">
                 <StackPanel Spacing="12">
                     <TextBlock Name="Name" TextWrapping="Wrap" Text="New Review" FontSize="25" Foreground="White" Margin="0,0,0,5"/>
@@ -63,6 +71,27 @@
                     </Grid>
                 </StackPanel>
             </Border>
+
+            <Border Grid.Column="1" x:Name="AddMangaPanel" IsVisible="False" Background="#0e0433" CornerRadius="8" Padding="20" VerticalAlignment="Top">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Add your own Manga" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,5"/>
+                    
+                    <TextBlock Text="Name:" Foreground="Gray"/>
+                    <TextBox x:Name="NewMangaTitleInput" PlaceholderText="Enter name..."/>
+                    
+                    <TextBlock Text="Genre:" Foreground="Gray"/>
+                    <TextBox x:Name="NewMangaGenreInput" PlaceholderText="Drama, Romance..."/>
+
+                    <TextBlock Text="Description:" Foreground="Gray"/>
+                    <TextBox x:Name="NewMangaDescInput" Height="80" AcceptsReturn="True" TextWrapping="Wrap" PlaceholderText="About..."/>
+                    
+                    <Grid ColumnDefinitions="*, *">
+                        <Button Grid.Column="0" Content="Save" Click="SaveCustomManga_OnClick" Background="#31108f" Foreground="White" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,10,5,0"/>
+                        <Button Grid.Column="1" Content="Cancel" Click="CancelCustomManga_OnClick" Background="Transparent" Foreground="Gray" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="5,10,0,0"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
         </Grid>    
         <TextBlock Grid.Row="2"></TextBlock>
     </Grid>

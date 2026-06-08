@@ -335,4 +335,44 @@ public partial class AnimeList : UserControl
         AnimeListBox.ItemsSource = App.AppData.DroppedAnimeList;
         _animeList = App.AppData.DroppedAnimeList;
     }
+    private void AddCustomAnimeButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        DetailPanel.IsVisible = false;
+        AddAnimePanel.IsVisible = true;
+    }
+
+    private void CancelCustomAnime_OnClick(object? sender, RoutedEventArgs e)
+    {
+        AddAnimePanel.IsVisible = false;
+        NewAnimeTitleInput.Text = "";
+        NewAnimeGenreInput.Text = "";
+        NewAnimeDescInput.Text = "";
+    }
+
+    private void SaveCustomAnime_OnClick(object? sender, RoutedEventArgs e)
+    {
+        string title = NewAnimeTitleInput.Text ?? "";
+        string genre = NewAnimeGenreInput.Text ?? "";
+        string description = NewAnimeDescInput.Text ?? "";
+        
+        var newAnime = new Book_Film_Database.Models.Anime
+        {
+            Name = title,
+            Genre = genre,
+            Description = description,
+            IsFavorite = false
+        };
+        
+        App.AppData.CustomAnimeList.Add(newAnime);
+        App.AppData.AnimesList.Add(newAnime);
+        
+        App.AppData.SaveUserData();
+        
+        AnimeListBox.ItemsSource = App.AppData.AnimesList.ToArray();
+        
+        AddAnimePanel.IsVisible = false;
+        NewAnimeTitleInput.Text = "";
+        NewAnimeGenreInput.Text = "";
+        NewAnimeDescInput.Text = "";
+    }
 }

@@ -33,6 +33,9 @@
       <Compile Update="Views\ReviewsList.axaml.cs">
         <DependentUpon>Reviews.axaml</DependentUpon>
       </Compile>
+      <Compile Update="Views\MangaFavoritesList.axaml.cs">
+        <DependentUpon>MangaFavoritesList.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

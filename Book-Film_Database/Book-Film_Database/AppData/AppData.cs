@@ -26,6 +26,8 @@ public class AppData
     public List<Manga> PlanningMangaList { get; set; } = new List<Manga>();
     public List<Manga> DroppedMangaList { get; set; } = new List<Manga>();
     public List<Manga> UnreadMangaList { get; set; } = new List<Manga>();
+    public List<Anime> CustomAnimeList { get; set; } = new List<Anime>();
+    public List<Manga> CustomMangaList { get; set; } = new List<Manga>();
 
 
 
@@ -168,6 +170,8 @@ public class AppData
         public List<Anime> WatchingAnime { get; set; } = new List<Anime>();
         public List<Anime> PlanningAnime { get; set; } = new List<Anime>();
         public List<Anime> DroppedAnime { get; set; } = new List<Anime>();
+        public List<Anime> CustomAnimeList { get; set; } = new List<Anime>();
+        public List<Manga> CustomMangaList { get; set; } = new List<Manga>();
     }
     public void SaveUserData()
     {
@@ -236,6 +240,15 @@ public class AppData
                         {
                             manga.IsFavorite = true; // uprav název podle své třídy Manga
                         }
+                    }
+                    foreach (var anime in CustomAnimeList)
+                    {
+                        if (!AnimesList.Any(a => a.Name == anime.Name)) AnimesList.Add(anime);
+                    }
+
+                    foreach (var manga in CustomMangaList)
+                    {
+                        if (!MangaList.Any(m => m.Name == manga.Name)) MangaList.Add(manga);
                     }
                     
                     Console.WriteLine("User data loaded.");

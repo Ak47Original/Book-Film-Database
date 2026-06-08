@@ -18,7 +18,7 @@
                             </StackPanel>
                         </Button>    
                         
-                        <Button Content="Odebrat 🗑️" 
+                        <Button Content="Remove 🗑️" 
                                 Click="RemoveFromMangaFavorites_OnClick" 
                                 Background="#441111" 
                                 Foreground="White" 

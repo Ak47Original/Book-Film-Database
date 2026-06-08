@@ -27,7 +27,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
             Console.WriteLine(ex.StackTrace);
         }
     }
@@ -41,7 +41,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
             Console.WriteLine(ex.StackTrace);
         }
     }
@@ -55,7 +55,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
     private void ReviewsListButton(object? sender, RoutedEventArgs e)
@@ -67,7 +67,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 
@@ -81,7 +81,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"CHYBA: {ex.Message}");
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 }
