@@ -20,6 +20,7 @@ public partial class AnimeList : UserControl
     
     public List<Anime> SearchedAnimeList { get; set; } = new List<Anime>();
     private Anime _selectedAnime;
+    private int selectedAnimeIndex;
     public AnimeList()
     {
         InitializeComponent();
@@ -149,44 +150,123 @@ public partial class AnimeList : UserControl
         DetailPanel.IsVisible = false;
     }
 
+    private void StatusUnwatched_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (App.AppData.WatchedAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.WatchedAnimeList.Remove(_selectedAnime);
+            App.AppData.UnwatchedAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.WatchingAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.WatchingAnimeList.Remove(_selectedAnime);
+            App.AppData.UnwatchedAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.PlanningAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.PlanningAnimeList.Remove(_selectedAnime);
+            App.AppData.UnwatchedAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.DroppedAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.DroppedAnimeList.Remove(_selectedAnime);
+            App.AppData.UnwatchedAnimeList.Add(_selectedAnime);
+        }
+    }
 
     private void StatusWatched_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (!(App.AppData.WatchingAnimeList.Contains(_selectedAnime) || App.AppData.PlanningAnimeList.Contains(_selectedAnime) ||
-              App.AppData.DroppedAnimeList.Contains(_selectedAnime)))
+        if (App.AppData.WatchingAnimeList.Contains(_selectedAnime))
         {
+            App.AppData.WatchingAnimeList.Remove(_selectedAnime);
             App.AppData.WatchedAnimeList.Add(_selectedAnime);
-            Console.WriteLine(App.AppData.WatchedAnimeList[0].Name);
+        }
+        else if (App.AppData.PlanningAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.PlanningAnimeList.Remove(_selectedAnime);
+            App.AppData.WatchedAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.DroppedAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.DroppedAnimeList.Remove(_selectedAnime);
+            App.AppData.WatchedAnimeList.Add(_selectedAnime);
+        }
+        else
+        {
+            App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
+            App.AppData.WatchedAnimeList.Add(_selectedAnime);
         }
     }
 
     private void StatusWatching_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (!(App.AppData.WatchedAnimeList.Contains(_selectedAnime) || App.AppData.PlanningAnimeList.Contains(_selectedAnime) ||
-              App.AppData.DroppedAnimeList.Contains(_selectedAnime)))
+        if (App.AppData.WatchedAnimeList.Contains(_selectedAnime))
         {
+            App.AppData.WatchedAnimeList.Remove(_selectedAnime);
             App.AppData.WatchingAnimeList.Add(_selectedAnime);
-            Console.WriteLine(App.AppData.WatchingAnimeList[0].Name);
+        }
+        else if (App.AppData.PlanningAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.PlanningAnimeList.Remove(_selectedAnime);
+            App.AppData.WatchingAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.DroppedAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.DroppedAnimeList.Remove(_selectedAnime);
+            App.AppData.WatchingAnimeList.Add(_selectedAnime);
+        }
+        else
+        {
+            App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
+            App.AppData.WatchingAnimeList.Add(_selectedAnime);
         }
     }
 
     private void StatusPlanning_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (!(App.AppData.WatchedAnimeList.Contains(_selectedAnime) || App.AppData.WatchingAnimeList.Contains(_selectedAnime) ||
-              App.AppData.DroppedAnimeList.Contains(_selectedAnime)))
+        if (App.AppData.WatchedAnimeList.Contains(_selectedAnime))
         {
+            App.AppData.WatchedAnimeList.Remove(_selectedAnime);
             App.AppData.PlanningAnimeList.Add(_selectedAnime);
-            Console.WriteLine(App.AppData.PlanningAnimeList[0].Name);
-        }    
+        }
+        else if (App.AppData.WatchingAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.WatchingAnimeList.Remove(_selectedAnime);
+            App.AppData.PlanningAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.DroppedAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.DroppedAnimeList.Remove(_selectedAnime);
+            App.AppData.PlanningAnimeList.Add(_selectedAnime);
+        }
+        else
+        {
+            App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
+            App.AppData.PlanningAnimeList.Add(_selectedAnime);
+        } 
     }
 
     private void StatusDropped_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (!(App.AppData.WatchedAnimeList.Contains(_selectedAnime) || App.AppData.PlanningAnimeList.Contains(_selectedAnime) ||
-              App.AppData.WatchingAnimeList.Contains(_selectedAnime)))
+        if (App.AppData.WatchedAnimeList.Contains(_selectedAnime))
         {
+            App.AppData.WatchedAnimeList.Remove(_selectedAnime);
             App.AppData.DroppedAnimeList.Add(_selectedAnime);
-            Console.WriteLine(App.AppData.DroppedAnimeList[0].Name);
+        }
+        else if (App.AppData.WatchingAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.WatchingAnimeList.Remove(_selectedAnime);
+            App.AppData.DroppedAnimeList.Add(_selectedAnime);
+        }
+        else if (App.AppData.PlanningAnimeList.Contains(_selectedAnime))
+        {
+            App.AppData.PlanningAnimeList.Remove(_selectedAnime);
+            App.AppData.DroppedAnimeList.Add(_selectedAnime);
+        }
+        else
+        {
+            App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
+            App.AppData.DroppedAnimeList.Add(_selectedAnime);
         }
     }
 }

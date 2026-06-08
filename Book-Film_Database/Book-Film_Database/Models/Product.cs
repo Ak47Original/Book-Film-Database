@@ -17,6 +17,7 @@ public class Anime : Product
     public string RelatedManga { get; set; }
     public string Rating { get; set; }
     public bool IsFavorite { get; set; } = false;
+    public string Status { get; set; }
 }
 
 public class Manga : Product

@@ -18,6 +18,7 @@ public class AppData
     public List<Anime> FavoritesAnimeList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
     public List<Manga> FavoritesMangaList { get; set; } = new List<Manga>();
+    public List<Anime> UnwatchedAnimeList { get; set; } = new List<Anime>();
     public List<Book_Film_Database.Models.Review> ReviewsList { get; set; } = new List<Book_Film_Database.Models.Review>();
     
 
@@ -83,6 +84,13 @@ public class AppData
                                 case 17:
                                     
                                     AnimesList.Add(new Anime {Ranks = Rank, Name = Name, JapaneseName = JapaneseName, Description = Description, RelatedAnime = RelatedAnime, RelatedManga = RelatedManga,  Rating = Rating, Genre = Genre});
+                                    if (!(WatchedAnimeList.Contains(AnimesList[Rank - 1]) ||
+                                          WatchingAnimeList.Contains(AnimesList[Rank - 1]) ||
+                                          PlanningAnimeList.Contains(AnimesList[Rank - 1]) ||
+                                          DroppedAnimeList.Contains(AnimesList[Rank - 1])))
+                                    {
+                                        UnwatchedAnimeList.Add(AnimesList[Rank - 1]);
+                                    }
                                     Console.WriteLine($" {Rank}");
                                     column = 0;
                                     break;
