@@ -188,6 +188,9 @@ public partial class AnimeList : UserControl
             App.AppData.DroppedAnimeList.Remove(_selectedAnime);
             App.AppData.UnwatchedAnimeList.Add(_selectedAnime);
         }
+        
+        App.AppData.SaveUserData();
+        AnimeListBox.ItemsSource = _animeList.ToArray();
     }
 
     private void StatusWatched_OnClick(object? sender, RoutedEventArgs e)
@@ -212,6 +215,8 @@ public partial class AnimeList : UserControl
             App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
             App.AppData.WatchedAnimeList.Add(_selectedAnime);
         }
+        App.AppData.SaveUserData();
+        AnimeListBox.ItemsSource = _animeList.ToArray();
     }
 
     private void StatusWatching_OnClick(object? sender, RoutedEventArgs e)
@@ -236,6 +241,8 @@ public partial class AnimeList : UserControl
             App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
             App.AppData.WatchingAnimeList.Add(_selectedAnime);
         }
+        App.AppData.SaveUserData();
+        AnimeListBox.ItemsSource = _animeList.ToArray();
     }
 
     private void StatusPlanning_OnClick(object? sender, RoutedEventArgs e)
@@ -260,6 +267,8 @@ public partial class AnimeList : UserControl
             App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
             App.AppData.PlanningAnimeList.Add(_selectedAnime);
         } 
+        App.AppData.SaveUserData();
+        AnimeListBox.ItemsSource = _animeList.ToArray();
     }
 
     private void StatusDropped_OnClick(object? sender, RoutedEventArgs e)
@@ -284,6 +293,8 @@ public partial class AnimeList : UserControl
             App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
             App.AppData.DroppedAnimeList.Add(_selectedAnime);
         }
+        App.AppData.SaveUserData();
+        AnimeListBox.ItemsSource = _animeList.ToArray();
     }
 
     private void FilterAll(object? sender, RoutedEventArgs e)
