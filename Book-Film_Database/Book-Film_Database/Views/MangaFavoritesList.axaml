@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="Book_Film_Database.MangaFavoritesList">
     <Grid>
-        <ListBox Name="MyFavoritesMangaListBox" Background="#040012" Height="1080">
+        <ListBox Name="MyFavoritesMangaListBox" Background="#040012" Width="1500" Height="830">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:Manga">
                     <Grid Margin="5" Background="#0e0433" HorizontalAlignment="Stretch">

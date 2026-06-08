@@ -7,12 +7,12 @@
              Background="#040012"
              x:Class="Book_Film_Database.FavoritesList">
     <Grid>
-        <ListBox Name="MyFavoritesListBox" Background="#040012" Height="1080">
+        <ListBox Name="MyFavoritesListBox" Background="#040012" Height="830" Width="1500">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="models:Anime">
                     <Grid Margin="5" Background="#0e0433" HorizontalAlignment="Stretch">
                         
-                        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="#0e0433" Padding="10">
+                        <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Background="#0e0433" Padding="10"  >
                             <StackPanel>
                                 <TextBlock FontSize="20" Text="{Binding Name}" Foreground="White"></TextBlock>
                                 <TextBlock FontSize="15" Text="{Binding Genre}" Foreground="Gray"></TextBlock>
