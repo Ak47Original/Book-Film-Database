@@ -17,7 +17,9 @@ namespace Book_Film_Database;
 
 public partial class AnimeList : UserControl
 {
+    
     public List<Anime> SearchedAnimeList { get; set; } = new List<Anime>();
+    private Anime _selectedAnime;
     public AnimeList()
     {
         InitializeComponent();
@@ -95,7 +97,7 @@ public partial class AnimeList : UserControl
         }
     }
 
-    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    private void ToggleButton_OnClick(object? sender, RoutedEventArgs e)
     {
         var button = sender as ToggleButton;
         var grid = button.Content as Grid;
@@ -125,6 +127,65 @@ public partial class AnimeList : UserControl
             {
                 App.AppData.FavoritesAnimeList.Remove(anime);
             }
+        }
+    }
+
+    private void Button_OnClick(object? sender, RoutedEventArgs e)
+    {
+        DetailPanel.IsVisible = true;
+        var button = sender as Button;
+        var anime = button.DataContext as Anime;
+        _selectedAnime = anime;
+        Name.Text = anime.Name;
+        Genre.Text = anime.Genre;
+        Description.Text = anime.Description;
+        
+        
+    }
+
+    private void CloseButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        DetailPanel.IsVisible = false;
+    }
+
+
+    private void StatusWatched_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (!(App.AppData.WatchingAnimeList.Contains(_selectedAnime) || App.AppData.PlanningAnimeList.Contains(_selectedAnime) ||
+              App.AppData.DroppedAnimeList.Contains(_selectedAnime)))
+        {
+            App.AppData.WatchedAnimeList.Add(_selectedAnime);
+            Console.WriteLine(App.AppData.WatchedAnimeList[0].Name);
+        }
+    }
+
+    private void StatusWatching_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (!(App.AppData.WatchedAnimeList.Contains(_selectedAnime) || App.AppData.PlanningAnimeList.Contains(_selectedAnime) ||
+              App.AppData.DroppedAnimeList.Contains(_selectedAnime)))
+        {
+            App.AppData.WatchingAnimeList.Add(_selectedAnime);
+            Console.WriteLine(App.AppData.WatchingAnimeList[0].Name);
+        }
+    }
+
+    private void StatusPlanning_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (!(App.AppData.WatchedAnimeList.Contains(_selectedAnime) || App.AppData.WatchingAnimeList.Contains(_selectedAnime) ||
+              App.AppData.DroppedAnimeList.Contains(_selectedAnime)))
+        {
+            App.AppData.PlanningAnimeList.Add(_selectedAnime);
+            Console.WriteLine(App.AppData.PlanningAnimeList[0].Name);
+        }    
+    }
+
+    private void StatusDropped_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (!(App.AppData.WatchedAnimeList.Contains(_selectedAnime) || App.AppData.PlanningAnimeList.Contains(_selectedAnime) ||
+              App.AppData.WatchingAnimeList.Contains(_selectedAnime)))
+        {
+            App.AppData.DroppedAnimeList.Add(_selectedAnime);
+            Console.WriteLine(App.AppData.DroppedAnimeList[0].Name);
         }
     }
 }

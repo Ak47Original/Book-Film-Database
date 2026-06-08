@@ -10,6 +10,10 @@ namespace Book_Film_Database.Data;
 public class AppData
 {
     public List<Anime> AnimesList { get; set; } = new List<Anime>();
+    public List<Anime> WatchedAnimeList { get; set; } = new List<Anime>();
+    public List<Anime> WatchingAnimeList { get; set; } = new List<Anime>();
+    public List<Anime> PlanningAnimeList { get; set; } = new List<Anime>();
+    public List<Anime> DroppedAnimeList { get; set; } = new List<Anime>();
     public List<Anime> FavoritesAnimeList { get; set; } = new List<Anime>();
     public List<Manga> MangaList { get; set; } = new List<Manga>();
     public List<Manga> FavoritesMangaList { get; set; } = new List<Manga>();
