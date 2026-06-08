@@ -17,6 +17,7 @@ public partial class App : Application
         //var appData = new AppData();  
         AppData.ReadAnimeCSV();
         AppData.ReadMangaCSV();
+        AppData.LoadUserData();
 
     }
 

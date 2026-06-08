@@ -25,7 +25,11 @@ public partial class ReviewsList : UserControl
         string text = ReviewContentInput.Text ?? ""; 
         
         int rating = 0;
-        int.TryParse(RatingInput.Text, out rating);
+        if (!int.TryParse(RatingInput.Text, out rating) || rating < 0 || rating > 10)
+        {
+            RatingInput.Text = "";
+            return;
+        }
 
         if (string.IsNullOrWhiteSpace(title)) return;
 
@@ -38,6 +42,8 @@ public partial class ReviewsList : UserControl
         };
         
         App.AppData.ReviewsList.Add(newReview);
+        
+        App.AppData.SaveUserData();
 
         RefreshReviews();
         

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Book_Film_Database.Models;
 using Microsoft.VisualBasic.FileIO;
 
@@ -23,6 +24,7 @@ public class AppData
     
     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Anime.csv");
     string path2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Manga.csv");
+    string UserDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AppData", "UserData.json");
     
     public void ReadAnimeCSV()
     {
@@ -139,6 +141,102 @@ public class AppData
                         }    
                     }
             }
+        }
+    }
+
+    public class UserDataStorage
+    {
+        public List<Anime> FavoritesAnime { get; set; } = new List<Anime>();
+        public List<Manga> FavoritesManga { get; set; } = new List<Manga>();
+        public List<Book_Film_Database.Models.Review> Reviews { get; set; } = new List<Book_Film_Database.Models.Review>();
+    }
+    public void SaveUserData()
+    {
+        try
+        {
+            string directory = Path.GetDirectoryName(UserDataPath);
+            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+            var package = new UserDataStorage()
+            {
+                FavoritesAnime = this.FavoritesAnimeList,
+                FavoritesManga = this.FavoritesMangaList,
+                Reviews = this.ReviewsList
+            };
+
+            string json = System.Text.Json.JsonSerializer.Serialize(package, new System.Text.Json.JsonSerializerOptions 
+            { 
+                WriteIndented = true 
+            });
+
+            File.WriteAllText(UserDataPath, json);
+            Console.WriteLine("Data has been saved.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+    public void LoadUserData()
+    {
+        try
+        {
+            if (File.Exists(UserDataPath))
+            {
+                string json = File.ReadAllText(UserDataPath);
+                var package = System.Text.Json.JsonSerializer.Deserialize<UserDataStorage>(json);
+
+                if (package != null)
+                {
+                    this.FavoritesAnimeList = package.FavoritesAnime ?? new List<Anime>();
+                    this.FavoritesMangaList = package.FavoritesManga ?? new List<Manga>();
+                    this.ReviewsList = package.Reviews ?? new List<Book_Film_Database.Models.Review>();
+                    
+                    foreach (var anime in AnimesList)
+                    {
+                        bool isFav = FavoritesAnimeList.Any(f => f.Name == anime.Name);
+                    
+                        if (isFav)
+                        {
+                            anime.IsFavorite = true; 
+                        }
+                    }
+                    /*foreach (var manga in MangaList)
+                    {
+                        bool isFav = FavoritesMangaList.Any(f => f.Name == manga.Name);
+                        if (isFav)
+                        {
+                            manga.IsFavorite = true; // uprav název podle své třídy Manga
+                        }
+                    }
+                    */
+                    Console.WriteLine("User data loaded.");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+    public void ResetAllUserData()
+    {
+        try
+        {
+            FavoritesAnimeList.Clear();
+            FavoritesMangaList.Clear();
+            ReviewsList.Clear();
+
+            if (File.Exists(UserDataPath))
+            {
+                File.Delete(UserDataPath);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 }

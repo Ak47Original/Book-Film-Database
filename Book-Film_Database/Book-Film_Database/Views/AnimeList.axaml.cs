@@ -121,6 +121,7 @@ public partial class AnimeList : UserControl
                 if (!App.AppData.FavoritesAnimeList.Contains(anime))
                 {
                     App.AppData.FavoritesAnimeList.Add(anime);
+                    App.AppData.SaveUserData();
                 }
             }
             else
