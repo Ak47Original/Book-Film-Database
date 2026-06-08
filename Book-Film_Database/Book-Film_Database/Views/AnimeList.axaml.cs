@@ -21,12 +21,15 @@ public partial class AnimeList : UserControl
     public List<Anime> SearchedAnimeList { get; set; } = new List<Anime>();
     private Anime _selectedAnime;
     private int selectedAnimeIndex;
+    private List<Anime> _animeList;
+    private int SearchLength;
     public AnimeList()
     {
         InitializeComponent();
         Console.WriteLine($"Počet anime: {App.AppData.AnimesList.Count}");
         Console.WriteLine($"Počet mangy: {App.AppData.MangaList.Count}");
         AnimeListBox.ItemsSource = App.AppData.AnimesList;
+        _animeList = App.AppData.AnimesList;
         /*
         foreach (var anime in App.AppData.AnimesList)
         {
@@ -45,10 +48,10 @@ public partial class AnimeList : UserControl
             StackPanel.Children.Add(AName);
             var AGenre = new TextBlock { Text = anime.Genre, FontSize = 25, HorizontalAlignment = HorizontalAlignment.Stretch, Background = new SolidColorBrush(Color.Parse("#0e0433"))};
             StackPanel.Children.Add(AGenre);
-            
+
         }
         */
-        
+
         //<TextBlock Text="Demon Slayer" FontSize="30"></TextBlock>
         //    <TextBlock Text="Action" FontSize="25"></TextBlock>
     }
@@ -58,44 +61,57 @@ public partial class AnimeList : UserControl
         var textBox = sender as TextBox;
         string currentText = "";
         int i = 0;
-        if (textBox != null)
+        currentText = textBox.Text;
+        SearchedAnimeList.RemoveAll(item => item.Name.Length < currentText.Length);
+        if (currentText.Length != 0)
         {
-            currentText = textBox.Text;
-            if (currentText.Length == 1){
-                foreach (var anime in App.AppData.AnimesList)
+            if (currentText.Length < SearchLength)
+            {
+                SearchedAnimeList.Clear();
+                foreach (var anime in _animeList)
                 {
                     if (currentText[0] == anime.Name[0]) 
                     {
                         SearchedAnimeList.Add(anime); 
-                        Console.WriteLine(anime.Name);
-                    }
-                }
-                Console.WriteLine("---------------------------------------------------");
-            }
-            if (currentText.Length > 1)
-            {
-                
-                i = SearchedAnimeList.Count;
-                for (int l = 0; l < i; l++)
-                {
-                    if (currentText[currentText.Length - 1] != SearchedAnimeList[l].Name[currentText.Length - 1])
-                    {   
-                        Console.WriteLine(currentText[currentText.Length - 1]);
-                        Console.WriteLine(SearchedAnimeList[l].Name[currentText.Length - 1]);
-                        Console.WriteLine("------------------------");
-                        SearchedAnimeList.Remove(SearchedAnimeList[l]);
-                        i--;
-                        l--;
                     }
                 }
 
-                foreach (var anime in SearchedAnimeList)
+                if (currentText.Length > 1)
                 {
-                    Console.WriteLine(anime.Name);
+                    for (int k = 1; k < currentText.Length; k++)
+                    {
+                        SearchedAnimeList.RemoveAll(item => item.Name[k]  != currentText[k]);
+                    }
                 }
-                Console.WriteLine("---------------------------------------------------");
+            }
+            else
+            {
+                if (currentText.Length == 1){
+                    foreach (var anime in _animeList)
+                    {
+                        if (currentText[0] == anime.Name[0]) 
+                        {
+                            SearchedAnimeList.Add(anime); 
+                        }
+                    }
+                }
+                if (currentText.Length > 1)
+                {
+                    SearchedAnimeList.RemoveAll(item => item.Name[currentText.Length-1] != currentText[currentText.Length-1]);
+                }
+            }
+            AnimeListBox.ItemsSource = App.AppData.AnimesList;
+            if (SearchedAnimeList.Count > 0)
+            {
+                AnimeListBox.ItemsSource = SearchedAnimeList;
             }
         }
+        else
+        {
+            AnimeListBox.ItemsSource = _animeList;
+            SearchedAnimeList.Clear();
+        }
+        SearchLength = currentText.Length;
     }
 
     private void ToggleButton_OnClick(object? sender, RoutedEventArgs e)
@@ -268,5 +284,44 @@ public partial class AnimeList : UserControl
             App.AppData.UnwatchedAnimeList.Remove(_selectedAnime);
             App.AppData.DroppedAnimeList.Add(_selectedAnime);
         }
+    }
+
+    private void FilterAll(object? sender, RoutedEventArgs e)
+    {
+        AnimeListBox.ItemsSource = App.AppData.AnimesList;
+        _animeList = App.AppData.AnimesList;
+    }
+
+    private void FilterWatched(object? sender, RoutedEventArgs e)
+    {
+        AnimeListBox.ItemsSource = App.AppData.WatchedAnimeList;
+        _animeList = App.AppData.WatchedAnimeList;
+
+    }
+
+    private void FilterUnwathced(object? sender, RoutedEventArgs e)
+    {
+        AnimeListBox.ItemsSource = App.AppData.UnwatchedAnimeList;
+        _animeList = App.AppData.UnwatchedAnimeList;
+
+    }
+
+    private void FilterWatching(object? sender, RoutedEventArgs e)
+    {
+        AnimeListBox.ItemsSource = App.AppData.WatchingAnimeList;
+        _animeList = App.AppData.WatchingAnimeList;
+    }
+
+    private void FilterPlanning(object? sender, RoutedEventArgs e)
+    {
+        AnimeListBox.ItemsSource = App.AppData.PlanningAnimeList;
+        _animeList = App.AppData.PlanningAnimeList;
+
+    }
+
+    private void FilterDropped(object? sender, RoutedEventArgs e)
+    {
+        AnimeListBox.ItemsSource = App.AppData.DroppedAnimeList;
+        _animeList = App.AppData.DroppedAnimeList;
     }
 }

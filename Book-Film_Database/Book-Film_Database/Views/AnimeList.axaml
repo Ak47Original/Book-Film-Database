@@ -12,16 +12,17 @@
         <Button Content="Filter" Height="50" Width="200" HorizontalAlignment="Right">
             <Button.Flyout>
                 <MenuFlyout>
-                    <MenuItem Header="Watched"></MenuItem>
-                    <MenuItem Header="Unwatched"></MenuItem>
-                    <MenuItem Header="Planning"></MenuItem>
-                    <MenuItem Header="Watching"></MenuItem>
-                    <MenuItem Header="Dropped"></MenuItem>
+                    <MenuItem Header="All" Click="FilterAll"></MenuItem>
+                    <MenuItem Header="Watched" Click="FilterWatched"></MenuItem>
+                    <MenuItem Header="Unwatched" Click="FilterUnwathced"></MenuItem>
+                    <MenuItem Header="Watching" Click="FilterWatching"></MenuItem>
+                    <MenuItem Header="Planning" Click="FilterPlanning"></MenuItem>
+                    <MenuItem Header="Dropped" Click="FilterDropped"></MenuItem>
                 </MenuFlyout>
             </Button.Flyout>
         </Button>
         <Grid Grid.Row="1" Grid.ColumnDefinitions="*, 400">
-            <ListBox  Name="AnimeListBox" Background="#040012" HorizontalAlignment="Left">
+            <ListBox  Name="AnimeListBox" MinHeight="1" Background="#040012" HorizontalAlignment="Left">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="models:Anime">
                         <Grid>
@@ -50,7 +51,7 @@
                         <Button Grid.Column="0" Content="Status" Background="#31108f" Foreground="White" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Margin="0,10,5,0">
                             <Button.Flyout>
                                 <MenuFlyout>
-                                    <MenuItem Header="Set as Unwatched" Click="StatusWatched_OnClick"></MenuItem>
+                                    <MenuItem Header="Set as Unwatched" Click="StatusUnwatched_OnClick"></MenuItem>
                                     <MenuItem Header="Set as Watched" Click="StatusWatched_OnClick"></MenuItem>
                                     <MenuItem Header="Set as Watching" Click="StatusWatching_OnClick"></MenuItem>
                                     <MenuItem Header="Set as Planning" Click="StatusPlanning_OnClick"></MenuItem>

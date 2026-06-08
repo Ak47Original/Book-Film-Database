@@ -157,6 +157,10 @@ public class AppData
         public List<Anime> FavoritesAnime { get; set; } = new List<Anime>();
         public List<Manga> FavoritesManga { get; set; } = new List<Manga>();
         public List<Book_Film_Database.Models.Review> Reviews { get; set; } = new List<Book_Film_Database.Models.Review>();
+        public List<Anime> WatchedAnime { get; set; } = new List<Anime>();
+        public List<Anime> WatchingAnime { get; set; } = new List<Anime>();
+        public List<Anime> PlanningAnime { get; set; } = new List<Anime>();
+        public List<Anime> DroppedAnime { get; set; } = new List<Anime>();
     }
     public void SaveUserData()
     {
@@ -169,7 +173,11 @@ public class AppData
             {
                 FavoritesAnime = this.FavoritesAnimeList,
                 FavoritesManga = this.FavoritesMangaList,
-                Reviews = this.ReviewsList
+                Reviews = this.ReviewsList,
+                WatchedAnime = this.WatchedAnimeList,
+                WatchingAnime = this.WatchingAnimeList,
+                PlanningAnime = this.PlanningAnimeList,
+                DroppedAnime = this.DroppedAnimeList,
             };
 
             string json = System.Text.Json.JsonSerializer.Serialize(package, new System.Text.Json.JsonSerializerOptions 
@@ -200,6 +208,10 @@ public class AppData
                     this.FavoritesAnimeList = package.FavoritesAnime ?? new List<Anime>();
                     this.FavoritesMangaList = package.FavoritesManga ?? new List<Manga>();
                     this.ReviewsList = package.Reviews ?? new List<Book_Film_Database.Models.Review>();
+                    this.WatchedAnimeList = package.WatchedAnime ?? new List<Anime>();
+                    this.WatchingAnimeList = package.WatchingAnime ?? new List<Anime>();
+                    this.PlanningAnimeList = package.PlanningAnime ?? new List<Anime>();
+                    this.DroppedAnimeList = package.DroppedAnime ?? new List<Anime>();
                     
                     foreach (var anime in AnimesList)
                     {
