@@ -365,6 +365,8 @@ public partial class AnimeList : UserControl
         
         App.AppData.CustomAnimeList.Add(newAnime);
         App.AppData.AnimesList.Add(newAnime);
+        App.AppData.JsonAnimeList.Add(newAnime);
+        App.AppData.AnimesList.Add(newAnime);
         
         App.AppData.SaveUserData();
         

@@ -28,7 +28,8 @@ public class AppData
     public List<Manga> UnreadMangaList { get; set; } = new List<Manga>();
     public List<Anime> CustomAnimeList { get; set; } = new List<Anime>();
     public List<Manga> CustomMangaList { get; set; } = new List<Manga>();
-
+    public List<Anime> JsonAnimeList { get; set; } = new List<Anime>();
+    public List<Manga> JsonMangaList { get; set; } = new List<Manga>();
 
 
     
@@ -174,6 +175,8 @@ public class AppData
         public List<Anime> DroppedAnime { get; set; } = new List<Anime>();
         public List<Anime> CustomAnimeList { get; set; } = new List<Anime>();
         public List<Manga> CustomMangaList { get; set; } = new List<Manga>();
+        public List<Anime> SavedAnimes { get; set; } = new List<Anime>();
+        public List<Manga> SavedMangas { get; set; } = new List<Manga>();
     }
     public void SaveUserData()
     {
@@ -191,6 +194,8 @@ public class AppData
                 WatchingAnime = this.WatchingAnimeList,
                 PlanningAnime = this.PlanningAnimeList,
                 DroppedAnime = this.DroppedAnimeList,
+                SavedAnimes = this.JsonAnimeList,
+                SavedMangas = this.JsonMangaList
             };
 
             string json = System.Text.Json.JsonSerializer.Serialize(package, new System.Text.Json.JsonSerializerOptions 
@@ -225,7 +230,23 @@ public class AppData
                     this.WatchingAnimeList = package.WatchingAnime ?? new List<Anime>();
                     this.PlanningAnimeList = package.PlanningAnime ?? new List<Anime>();
                     this.DroppedAnimeList = package.DroppedAnime ?? new List<Anime>();
+                    this.JsonAnimeList = package.SavedAnimes ?? new List<Anime>();
+                    this.JsonMangaList = package.SavedMangas ?? new List<Manga>();
                     
+                    foreach (var anime in this.JsonAnimeList)
+                    {
+                        if (!this.AnimesList.Contains(anime))
+                        {
+                            this.AnimesList.Add(anime);
+                        }
+                    }
+                    foreach (var manga in this.JsonMangaList)
+                    {
+                        if (!this.MangaList.Contains(manga))
+                        {
+                            this.MangaList.Add(manga);
+                        }
+                    }
                     foreach (var anime in AnimesList)
                     {
                         bool isFav = FavoritesAnimeList.Any(f => f.Name == anime.Name);
@@ -240,7 +261,7 @@ public class AppData
                         bool isFav = FavoritesMangaList.Any(f => f.Name == manga.Name);
                         if (isFav)
                         {
-                            manga.IsFavorite = true; // uprav název podle své třídy Manga
+                            manga.IsFavorite = true;
                         }
                     }
                     foreach (var anime in CustomAnimeList)

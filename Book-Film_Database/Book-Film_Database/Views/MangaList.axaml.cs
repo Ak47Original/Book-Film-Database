@@ -306,8 +306,6 @@ public partial class MangaList : UserControl
         _mangaList = App.AppData.DroppedMangaList;
     }
 
-    // 🔥 KOMPLETNĚ OPRAVENÉ METODY PRO PŘIDÁVÁNÍ VLASTNÍ MANGY:
-
     private void AddCustomMangaButton_OnClick(object? sender, RoutedEventArgs e)
     {
         DetailPanel.IsVisible = false;
@@ -334,7 +332,6 @@ public partial class MangaList : UserControl
             return;
         }
         
-        // Opraveno na model Manga
         var newManga = new Book_Film_Database.Models.Manga
         {
             Name = title,
@@ -344,6 +341,8 @@ public partial class MangaList : UserControl
         };
         
         App.AppData.CustomMangaList.Add(newManga);
+        App.AppData.MangaList.Add(newManga);
+        App.AppData.JsonMangaList.Add(newManga);
         App.AppData.MangaList.Add(newManga);
         
         App.AppData.SaveUserData();
