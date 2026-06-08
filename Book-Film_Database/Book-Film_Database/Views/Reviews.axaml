@@ -22,7 +22,16 @@
                                         <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Foreground="White"/>
                                         <TextBlock Text="{Binding Genre, StringFormat='({0})'}" FontSize="14" Foreground="Gray" VerticalAlignment="Center"/>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding Rating, StringFormat='{}{0}/10 ⭐'}" FontSize="16" FontWeight="Bold" Foreground="Gold" HorizontalAlignment="Right"/>
+                                    
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="15" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Rating, StringFormat='{}{0}/10 ⭐'}" FontSize="16" FontWeight="Bold" Foreground="Gold" VerticalAlignment="Center"/>
+                                        
+                                        <Button Content="❌" 
+                                                Click="DeleteReviewButton_OnClick" 
+                                                Background="Transparent" 
+                                                Padding="5" 
+                                                Cursor="Hand"/>
+                                    </StackPanel>
                                 </Grid>
                                 <TextBlock Text="{Binding Text}" FontSize="14" Foreground="LightGray" Margin="0,5,0,0" TextWrapping="Wrap"/>
                             </StackPanel>

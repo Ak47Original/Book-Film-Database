@@ -64,4 +64,14 @@ public partial class ReviewsList : UserControl
     {
         ReviewsListBox.ItemsSource = App.AppData.ReviewsList.ToArray();
     }
+    
+    private void DeleteReviewButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.DataContext is Book_Film_Database.Models.Review reviewToDelete)
+        {
+            App.AppData.ReviewsList.Remove(reviewToDelete);
+            App.AppData.SaveUserData();
+            RefreshReviews();
+        }
+    }
 }
