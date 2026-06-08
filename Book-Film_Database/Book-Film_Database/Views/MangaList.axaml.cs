@@ -46,7 +46,7 @@ public partial class MangaList : UserControl
                         SearchedMangaList.Add(manga); 
                     }
                 }
-
+                SearchedMangaList.RemoveAll(item => item.Name.Length < currentText.Length);
                 if (currentText.Length > 1)
                 {
                     for (int k = 1; k < currentText.Length; k++)

@@ -75,7 +75,7 @@ public partial class AnimeList : UserControl
                         SearchedAnimeList.Add(anime); 
                     }
                 }
-
+                SearchedAnimeList.RemoveAll(item => item.Name.Length < currentText.Length);
                 if (currentText.Length > 1)
                 {
                     for (int k = 1; k < currentText.Length; k++)
