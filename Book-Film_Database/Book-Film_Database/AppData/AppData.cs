@@ -32,6 +32,8 @@ public class AppData
     
     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Anime.csv");
     string path2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "Manga.csv");
+    public string AnimeExportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "AnimeExport.txt");
+    public string MangaExportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"AppData" ,  "MangaExport.txt");
     string UserDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AppData", "UserData.json");
     
     public void ReadAnimeCSV()
